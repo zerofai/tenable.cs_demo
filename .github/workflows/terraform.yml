@@ -145,7 +145,7 @@ jobs:
         echo "------"
         echo "Accurics scan AWS:"
         cd ${{ github.workspace }}/aws
-        /usr/local/bin/accurics scan -mode=pipeline -appurl=https://cloud.tenable.com/cns -token=$ACCURICS_APP_ID  -project=$ACCURICS_ENV_ID_AWS
+        /usr/local/bin/accurics scan -mode=pipeline -appurl=https://cloud.tenable.com/cns -token=$ACCURICS_APP_ID  -project=$ACCURICS_ENV_ID_AWS -fail
     - name: Show Result
       run: |
         echo "AWS:"
