@@ -101,56 +101,56 @@ jobs:
         echo "Terraform plan AWS:"
         cd ${{ github.workspace }}/aws
         terraform plan -input=false
-
+        
       # Download Accurics CLI and run Accurics CLI
-      - name: Download Accurics CLI
-        run: |
-          curl https://downloads.accurics.com/cli/1.0.35/accurics_linux --output /usr/local/bin/accurics
-          chmod +x /usr/local/bin/accurics
-          ls -la /usr/local/bin/accurics
-      - name: Accurics version
-        run: |
-          /usr/local/bin/accurics version
-            - name: Accurics plan
-        env:
-          ACCURICS_APP_ID: ${{ secrets.ACCURICS_APP_ID }}
-          ACCURICS_ENV_ID_AWS: ${{ secrets.ACCURICS_ENV_ID_AWS }}
-          ACCURICS_REPO_NAME: "https://github.com/zerofai/tenable.cs_demo.git"
-          ACCURICS_URL: "https://app.accurics.com"
-        run: |
-          echo "ENV check:"
-          echo "ACCURICS_APP_ID is $(echo $ACCURICS_APP_ID | wc -c) characters long"
-          echo "ACCURICS_ENV_ID_AWS is $(echo $ACCURICS_ENV_ID_AWS | wc -c) characters long"
-          echo "ACCURICS_REPO_NAME is $ACCURICS_REPO_NAME"
-          echo "ACCURICS_URL is $ACCURICS_URL"
-          echo ""
-          echo -n "terraform version:"
-          echo ""
-          terraform version
-          echo ""
-          echo "LS PWD"
-          echo "------"
-          ls ${{ github.workspace }}
-          echo "------"
-          echo "Accurics plan AWS:"
-          cd ${{ github.workspace }}/aws
-          /usr/local/bin/accurics plan -mode=pipeline -appurl=https://cloud.tenable.com/cns -token=$ACCURICS_APP_ID  -project=$ACCURICS_ENV_ID_AWS -fail
-          #echo "------"
-          #echo "Accurics init Azure:"
-          #cd ${{ github.workspace }}/azure
-          #accurics init
-          #echo "------"
-          #echo "Accurics plan Azure:"
-          #/usr/local/bin/accurics plan -mode=pipeline -appurl=https://cloud.tenable.com/cns -token=$ACCURICS_APP_ID  -project=$ACCURICS_ENV_ID_AZURE
-          #echo "------"
-      - name: Show Result
-        run: |
-           echo "AWS:"
-           cat ${{ github.workspace}}/aws/accurics_report.json
-           #echo "-----"
-           #echo "Azure:"
-           #cat ${{ github.workspace}}/azure/accurics_report.json
-           #echo "-----"
+    - name: Download Accurics CLI
+      run: |
+        curl https://downloads.accurics.com/cli/1.0.35/accurics_linux --output /usr/local/bin/accurics
+        chmod +x /usr/local/bin/accurics
+        ls -la /usr/local/bin/accurics
+    - name: Accurics version
+      run: |
+        /usr/local/bin/accurics version
+          - name: Accurics plan
+      env:
+        ACCURICS_APP_ID: ${{ secrets.ACCURICS_APP_ID }}
+        ACCURICS_ENV_ID_AWS: ${{ secrets.ACCURICS_ENV_ID_AWS }}
+        ACCURICS_REPO_NAME: "https://github.com/zerofai/tenable.cs_demo.git"
+        ACCURICS_URL: "https://app.accurics.com"
+      run: |
+        echo "ENV check:"
+        echo "ACCURICS_APP_ID is $(echo $ACCURICS_APP_ID | wc -c) characters long"
+        echo "ACCURICS_ENV_ID_AWS is $(echo $ACCURICS_ENV_ID_AWS | wc -c) characters long"
+        echo "ACCURICS_REPO_NAME is $ACCURICS_REPO_NAME"
+        echo "ACCURICS_URL is $ACCURICS_URL"
+        echo ""
+        echo -n "terraform version:"
+        echo ""
+        terraform version
+        echo ""
+        echo "LS PWD"
+        echo "------"
+        ls ${{ github.workspace }}
+        echo "------"
+        echo "Accurics plan AWS:"
+        cd ${{ github.workspace }}/aws
+        /usr/local/bin/accurics plan -mode=pipeline -appurl=https://cloud.tenable.com/cns -token=$ACCURICS_APP_ID  -project=$ACCURICS_ENV_ID_AWS -fail
+        #echo "------"
+        #echo "Accurics init Azure:"
+        #cd ${{ github.workspace }}/azure
+        #accurics init
+        #echo "------"
+        #echo "Accurics plan Azure:"
+        #/usr/local/bin/accurics plan -mode=pipeline -appurl=https://cloud.tenable.com/cns -token=$ACCURICS_APP_ID  -project=$ACCURICS_ENV_ID_AZURE
+        #echo "------"
+    - name: Show Result
+      run: |
+          echo "AWS:"
+          cat ${{ github.workspace}}/aws/accurics_report.json
+          #echo "-----"
+          #echo "Azure:"
+          #cat ${{ github.workspace}}/azure/accurics_report.json
+          #echo "-----"
 
       # On push to main, build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
