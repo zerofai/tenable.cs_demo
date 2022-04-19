@@ -112,7 +112,7 @@ jobs:
         tar -xf /tmp/terrascan.tar.gz -C /tmp/ && rm /tmp/terrascan.tar.gz
         install /tmp/terrascan /usr/local/bin && rm /tmp/terrascan
         ls -la /usr/local/bin/terrascan
-#        terrascan version
+        /usr/local/bin/terrascan version
 
     - name: Accurics version
       run: |
