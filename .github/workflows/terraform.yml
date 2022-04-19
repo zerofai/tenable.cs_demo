@@ -117,6 +117,8 @@ jobs:
         ACCURICS_ENV_ID_AWS: ${{ secrets.ACCURICS_ENV_ID_AWS }}
         ACCURICS_REPO_NAME: "https://github.com/zerofai/tenable.cs_demo.git"
         ACCURICS_URL: "https://app.accurics.com"
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: |
         echo "ENV check:"
         echo "ACCURICS_APP_ID is $(echo $ACCURICS_APP_ID | wc -c) characters long"
