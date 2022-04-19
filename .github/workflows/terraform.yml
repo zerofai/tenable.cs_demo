@@ -113,10 +113,11 @@ jobs:
         install /tmp/terrascan /usr/local/bin && rm /tmp/terrascan
         ls -la /usr/local/bin/terrascan
 
-    - name: Accurics version
+    - name: tenable.cs CLI version
       run: |
-        /usr/local/bin/accurics version && /usr/local/bin/terrascan version
-    - name: Accurics plan
+        /usr/local/bin/accurics version
+        /usr/local/bin/terrascan version
+    - name: tenable.cs plan and scan
       env:
         ACCURICS_APP_ID: ${{ secrets.ACCURICS_APP_ID }}
         ACCURICS_ENV_ID_AWS: ${{ secrets.ACCURICS_ENV_ID_AWS }}
@@ -145,7 +146,7 @@ jobs:
         echo "------"
         echo "Accurics scan AWS:"
         cd ${{ github.workspace }}/aws
-        /usr/local/bin/accurics scan -mode=pipeline -appurl=https://cloud.tenable.com/cns -token=$ACCURICS_APP_ID  -project=$ACCURICS_ENV_ID_AWS -fail
+        /usr/local/bin/accurics scan -mode=pipeline -appurl=https://cloud.tenable.com/cns -token=$ACCURICS_APP_ID  -project=$ACCURICS_ENV_ID_AWS
     - name: Show Result
       run: |
         echo "AWS:"
