@@ -77,21 +77,24 @@ jobs:
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
-      echo "Accurics init AWS:"
-      cd ${{ github.workspace }}/aws
-      run: terraform init
+      run: |
+        echo "Accurics init AWS:"
+        cd ${{ github.workspace }}/aws
+        terraform init
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
-      echo "Accurics init AWS:"
-      cd ${{ github.workspace }}/aws
-      run: terraform fmt -check
+      run: |
+        echo "Accurics init AWS:"
+        cd ${{ github.workspace }}/aws
+        terraform fmt -check
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      echo "Accurics init AWS:"
-      cd ${{ github.workspace }}/aws
-      run: terraform plan -input=false
+      run: |
+        echo "Accurics init AWS:"
+        cd ${{ github.workspace }}/aws
+        terraform plan -input=false
 
       # On push to main, build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
