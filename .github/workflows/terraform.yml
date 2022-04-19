@@ -112,11 +112,10 @@ jobs:
         tar -xf /tmp/terrascan.tar.gz -C /tmp/ && rm /tmp/terrascan.tar.gz
         install /tmp/terrascan /usr/local/bin && rm /tmp/terrascan
         ls -la /usr/local/bin/terrascan
-        /usr/local/bin/terrascan version
 
     - name: Accurics version
       run: |
-        /usr/local/bin/accurics version
+        /usr/local/bin/accurics version && /usr/local/bin/terrascan version
     - name: Accurics plan
       env:
         ACCURICS_APP_ID: ${{ secrets.ACCURICS_APP_ID }}
