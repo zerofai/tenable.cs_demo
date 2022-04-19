@@ -141,22 +141,10 @@ jobs:
         echo "Accurics plan AWS:"
         cd ${{ github.workspace }}/aws
         /usr/local/bin/accurics plan -mode=pipeline -appurl=https://cloud.tenable.com/cns -token=$ACCURICS_APP_ID  -project=$ACCURICS_ENV_ID_AWS
-        #echo "------"
-        #echo "Accurics init Azure:"
-        #cd ${{ github.workspace }}/azure
-        #accurics init
-        #echo "------"
-        #echo "Accurics plan Azure:"
-        #/usr/local/bin/accurics plan -mode=pipeline -appurl=https://cloud.tenable.com/cns -token=$ACCURICS_APP_ID  -project=$ACCURICS_ENV_ID_AZURE
-        #echo "------"
     - name: Show Result
       run: |
-          echo "AWS:"
-          cat ${{ github.workspace}}/aws/accurics_report.json
-          #echo "-----"
-          #echo "Azure:"
-          #cat ${{ github.workspace}}/azure/accurics_report.json
-          #echo "-----"
+        echo "AWS:"
+        cat ${{ github.workspace}}/aws/accurics_report.json
 
       # On push to main, build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
