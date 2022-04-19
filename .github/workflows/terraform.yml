@@ -110,7 +110,7 @@ jobs:
         ls -la /usr/local/bin/accurics
         curl -L "$(curl -s https://api.github.com/repos/accurics/terrascan/releases/latest | grep -o -E "https://.+?_Darwin_x86_64.tar.gz")" > /tmp/terrascan.tar.gz
         tar -xf /tmp/terrascan.tar.gz -C /tmp/ && rm /tmp/terrascan.tar.gz
-        install terrascan /usr/local/bin && rm terrascan
+        install /tmp/terrascan /usr/local/bin && rm /tmp/terrascan
         ls -la /usr/local/bin/terrascan
 #        terrascan version
 
