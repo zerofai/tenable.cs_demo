@@ -111,7 +111,7 @@ jobs:
     - name: Accurics version
       run: |
         /usr/local/bin/accurics version
-          - name: Accurics plan
+    - name: Accurics plan
       env:
         ACCURICS_APP_ID: ${{ secrets.ACCURICS_APP_ID }}
         ACCURICS_ENV_ID_AWS: ${{ secrets.ACCURICS_ENV_ID_AWS }}
