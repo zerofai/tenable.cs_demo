@@ -109,9 +109,10 @@ jobs:
         chmod +x /usr/local/bin/accurics
         ls -la /usr/local/bin/accurics
         curl -L "$(curl -s https://api.github.com/repos/accurics/terrascan/releases/latest | grep -o -E "https://.+?_Darwin_x86_64.tar.gz")" > /tmp/terrascan.tar.gz
-        tar -xf /tmp/terrascan.tar.gz -C /tmp/ && rm /tmp/terrascan.tar.gz
-        install /tmp/terrascan /usr/local/bin && rm /tmp/terrascan
-        terrascan version
+        tar -xf /tmp/terrascan.tar.gz -C //usr/local/bin/ && rm /tmp/terrascan.tar.gz
+        chmod +x /usr/local/bin/terrascan
+        ls -la /usr/local/bin/terrascan
+#        terrascan version
 
     - name: Accurics version
       run: |
