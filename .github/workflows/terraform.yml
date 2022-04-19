@@ -132,6 +132,10 @@ jobs:
         echo "------"
         ls ${{ github.workspace }}
         echo "------"
+        echo "Accurics init AWS:"
+        cd ${{ github.workspace }}/aws
+        accurics init
+        echo "------"
         echo "Accurics plan AWS:"
         cd ${{ github.workspace }}/aws
         /usr/local/bin/accurics plan -mode=pipeline -appurl=https://cloud.tenable.com/cns -token=$ACCURICS_APP_ID  -project=$ACCURICS_ENV_ID_AWS
