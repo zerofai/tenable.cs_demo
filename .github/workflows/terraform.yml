@@ -103,7 +103,7 @@ jobs:
         terraform plan -input=false
         
       # Download Accurics CLI and run Accurics CLI
-    - name: Download Accurics CLI
+    - name: Download tenable.cs CLI
       run: |
         curl https://downloads.accurics.com/cli/1.0.35/accurics_linux --output /usr/local/bin/accurics
         chmod +x /usr/local/bin/accurics
@@ -115,7 +115,10 @@ jobs:
 
     - name: tenable.cs CLI version
       run: |
+        echo "tenable.cs cli version"
         /usr/local/bin/accurics version
+        echo "------"
+        echo "terrascan version"
         /usr/local/bin/terrascan version
     - name: tenable.cs plan and scan
       env:
@@ -140,11 +143,11 @@ jobs:
         echo "------"
         ls ${{ github.workspace }}
         echo "------"
-        echo "Accurics init AWS:"
+        echo "accurics init AWS:"
         cd ${{ github.workspace }}/aws
         accurics init
         echo "------"
-        echo "Accurics scan AWS:"
+        echo "accurics scan AWS:"
         cd ${{ github.workspace }}/aws
         /usr/local/bin/accurics scan -mode=pipeline -appurl=https://cloud.tenable.com/cns -token=$ACCURICS_APP_ID  -project=$ACCURICS_ENV_ID_AWS
     - name: Show Result
