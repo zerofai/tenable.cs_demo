@@ -153,7 +153,14 @@ jobs:
         echo "------"
         echo "accurics scan AWS:"
         cd ${{ github.workspace }}/aws
-        /usr/local/bin/accurics scan -mode=pipeline -appurl=https://cloud.tenable.com/cns -token=$ACCURICS_APP_ID  -project=$ACCURICS_ENV_ID_AWS
+        if 
+          accurics scan -mode=pipeline -appurl=https://cloud.tenable.com/cns -token=2e31c520-8d09-4ec4-961e-7cfb160ce41f -project=94d7d0d1-2402-46ab-ba2e-40a75dd0d50f -fail; then
+          echo "IaC does not contain High severity policy violation, scan passed"
+        else
+          echo "IaC contain High severity policy violation, scan failed, results printed below"
+          cat ${{ github.workspace}}/aws/accurics_report.json
+          exit 1
+        fi
 
       # Print the result in json format
     - name: Show Result
