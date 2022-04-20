@@ -124,8 +124,8 @@ jobs:
       env:
         ACCURICS_APP_ID: ${{ secrets.ACCURICS_APP_ID }}
         ACCURICS_ENV_ID_AWS: ${{ secrets.ACCURICS_ENV_ID_AWS }}
-        ACCURICS_REPO_NAME: "https://github.com/zerofai/tenable.cs_demo.git"
-        ACCURICS_URL: "https://app.accurics.com"
+        ACCURICS_REPO_NAME: ${{ github.server_url }}/${{ github.repository }}
+#        ACCURICS_REPO_NAME: ${{ secrets.REPO_URL }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: |
@@ -133,7 +133,6 @@ jobs:
         echo "ACCURICS_APP_ID is $(echo $ACCURICS_APP_ID | wc -c) characters long"
         echo "ACCURICS_ENV_ID_AWS is $(echo $ACCURICS_ENV_ID_AWS | wc -c) characters long"
         echo "ACCURICS_REPO_NAME is $ACCURICS_REPO_NAME"
-        echo "ACCURICS_URL is $ACCURICS_URL"
         echo ""
         echo -n "terraform version:"
         echo ""
