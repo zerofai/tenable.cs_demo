@@ -111,7 +111,7 @@ jobs:
         curl https://downloads.accurics.com/cli/latest/accurics_linux --output /usr/local/bin/accurics
         chmod +x /usr/local/bin/accurics
         ls -la /usr/local/bin/accurics
-        curl -L "$(curl -s https://api.github.com/repos/accurics/terrascan/releases/latest | grep -o -E "https://.+?_Linux_x86_64.tar.gz")" > /tmp/terrascan.tar.gz
+        curl -L "$(curl -s https://api.github.com/repos/tenable/terrascan/releases/latest | grep -o -E "https://.+?_Linux_x86_64.tar.gz")" > /tmp/terrascan.tar.gz
         tar -xf /tmp/terrascan.tar.gz -C /tmp/ && rm /tmp/terrascan.tar.gz
         install /tmp/terrascan /usr/local/bin && rm /tmp/terrascan
         ls -la /usr/local/bin/terrascan
